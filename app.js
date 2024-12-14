@@ -1,19 +1,9 @@
-import https from "https"
 import express from "express"
 import path from "path"
-import fs from "fs"
 // external imports
 import adminRoutes from "./routes/admin.js"
 import shopRoutes from "./routes/shop.js"
 import dirName from "./utilities/dirname.js"
-
-// environment variables
-const PORT = 3_000
-const CERT_DIR = `${dirName.__dirname}/cert`
-const options = {
-  key: fs.readFileSync(`${CERT_DIR}/privatekey.pem`),
-  cert: fs.readFileSync(`${CERT_DIR}/certificate.pem`)
-}
 
 const app = express()
 
@@ -41,8 +31,4 @@ app.use("*", (req, res, next) => {
   res.status(404).sendFile(path.join(dirName.__dirname, "views", "404.html"))
 })
 
-
-// start server
-https.createServer(options, app).listen(PORT, () => {
-  console.log(`Server started listening on port ${PORT}`)
-})
+export default app
