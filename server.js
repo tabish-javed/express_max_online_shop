@@ -9,7 +9,7 @@ dotenv.config()
 
 
 // environment variables
-const port = process.env.DEV_PORT
+const port = process.env.NODE_ENV === "DEV" ? process.env.DEV_PORT : process.env.PRD_PORT
 const options = {
   key: fs.readFileSync(process.env.PRI_KEY),
   cert: fs.readFileSync(process.env.CERTIFICATE)
