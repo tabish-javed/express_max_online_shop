@@ -5,14 +5,14 @@ import adminRoutes from "./routes/admin.js"
 import shopRoutes from "./routes/shop.js"
 import dirName from "./utilities/dirname.js"
 
+
 const app = express()
+
 
 // app configuration
 app.set("view engine", "pug")
 app.set("views", "views")
 
-// http.createServer(app).listen(80)
-// https.createServer({}, app).listen(443)
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
@@ -30,5 +30,6 @@ app.use(shopRoutes.router)
 app.use("*", (req, res, next) => {
   res.status(404).sendFile(path.join(dirName.__dirname, "views", "404.html"))
 })
+
 
 export default app

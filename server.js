@@ -1,19 +1,25 @@
 import https from "https"
-import fs from "fs"
+// import http from 'http'
+import dotenv from 'dotenv'
+import fs from 'fs'
 import app from "./app.js"
-import dirName from "./utilities/dirname.js"
+
+
+dotenv.config()
 
 
 // environment variables
-const PORT = 3_000
-const CERT_DIR = `${dirName.__dirname}/certificate`
+const port = process.env.DEV_PORT
 const options = {
-  key: fs.readFileSync(`${CERT_DIR}/privatekey.pem`),
-  cert: fs.readFileSync(`${CERT_DIR}/certificate.pem`)
+  key: fs.readFileSync(process.env.PRI_KEY),
+  cert: fs.readFileSync(process.env.CERTIFICATE)
 }
 
-
 // start server
-https.createServer(options, app).listen(PORT, () => {
-  console.log(`Server started listening on port ${PORT}`)
+https.createServer(options, app).listen(port, () => {
+  console.log(`Server started listening on port ${port}`)
 })
+
+// http.createServer(app).listen(2000, () => {
+//   console.log(`Server started listening on port ${2000}`)
+// })
