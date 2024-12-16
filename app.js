@@ -28,7 +28,7 @@ app.use("/admin", adminRoutes.router)
 app.use(shopRoutes.router)
 
 app.use("*", (req, res, next) => {
-  res.status(404).sendFile(path.join(dirName.__dirname, "views", "404.html"))
+  res.status(404).render("404")
 })
 
 

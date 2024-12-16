@@ -17,7 +17,8 @@ async function readCertificate () {
 
 // environment variables
 const port = process.env.NODE_ENV === "DEV" ? process.env.DEV_PORT : process.env.PRD_PORT
-const options = readCertificate()
+const options = await readCertificate()
+
 
 // start server
 https.createServer(options, app).listen(port, () => {

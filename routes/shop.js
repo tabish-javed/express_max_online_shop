@@ -1,6 +1,4 @@
 import express from "express"
-import path from "path"
-import dirName from "../utilities/dirname.js"
 import adminData from '../routes/admin.js'
 
 const router = express.Router()
