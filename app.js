@@ -1,6 +1,5 @@
 import express from "express"
 import path from "path"
-// external imports
 import adminRoutes from "./routes/admin.js"
 import shopRoutes from "./routes/shop.js"
 import dirName from "./utilities/dirname.js"
