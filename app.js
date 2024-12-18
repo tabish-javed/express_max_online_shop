@@ -1,5 +1,6 @@
 import express from "express"
 import path from "path"
+import errorController from "./controller/error.js"
 import adminRoutes from "./routes/admin.js"
 import shopRoutes from "./routes/shop.js"
 import dirName from "./utilities/dirname.js"
@@ -26,9 +27,7 @@ app.use(express.static(path.join(dirName.__dirname, "public")))
 app.use("/admin", adminRoutes.router)
 app.use(shopRoutes.router)
 
-app.use("*", (req, res, next) => {
-  res.status(404).render("404", { docTitle: "Page Not Found" })
-})
+app.use("*", errorController.error(404, "Page not found"))
 
 
 export default app
