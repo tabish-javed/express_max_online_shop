@@ -10,9 +10,8 @@ function postAddProduct (req, res, next) {
   res.status(302).redirect("/")
 }
 
-function getProducts (req, res, next) {
-  const products = Product.Product.fetchAll()
-  console.log(products)
+async function getProducts (req, res, next) {
+  const products = await Product.Product.fetchAll()
   res.status(200).render('shop', { products, docTitle: "Shop", path: "/" })
 }
 
@@ -20,5 +19,5 @@ function getProducts (req, res, next) {
 export default {
   getAddProduct,
   postAddProduct,
-  getProducts,
+  getProducts
 }
