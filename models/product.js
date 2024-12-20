@@ -34,6 +34,19 @@ class Product {
       }
     }
   }
+
+  /* // ANOTHER WAY OF HANDLING PRODUCTS USING CALLBACK - CHECK PRODUCTS.JS
+  static async fetchAll (callback) {
+    try {
+      const data = await fs.readFile(fileName)
+      callback(await JSON.parse(data))
+    } catch (error) {
+      if (error.code === "ENOENT") {
+        callback([])
+      }
+    }
+  }
+  */
 }
 
 

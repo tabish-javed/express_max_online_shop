@@ -15,6 +15,14 @@ async function getProducts (req, res, next) {
   res.status(200).render('shop', { products, docTitle: "Shop", path: "/" })
 }
 
+/* // ANOTHER WAY OF HANDLING PRODUCTS USING CALLBACK - CHECK PRODUCT.JS
+function getProducts (req, res, next) {
+  Product.Product.fetchAll((products) => {
+    res.status(200).render('shop', { products, docTitle: "Shop", path: "/" })
+  })
+}
+*/
+
 
 export default {
   getAddProduct,
