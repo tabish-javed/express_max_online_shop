@@ -1,9 +1,25 @@
 import fs from "fs/promises"
-import dirName from "../utilities/dirname.js"
 import path from "path"
+import dirName from "../utilities/dirname.js"
 
 
 const fileName = path.join(dirName.__dirname, "data", "products.json")
+
+
+async function readData () {
+  try {
+    const data = await fs.readFile(fileName)
+    return await JSON.parse(data)
+  } catch (error) {
+    fs.open(fileName, "a")
+    return []
+  }
+}
+
+async function writeData (data) {
+  fs.writeFile(fileName, JSON.stringify(data))
+}
+
 
 class Product {
   constructor (title) {
@@ -11,28 +27,13 @@ class Product {
   }
 
   async save () {
-    let products = []
-    try {
-      const data = await fs.readFile(fileName)
-      products = JSON.parse(data)
-    } catch (error) {
-      fs.open(fileName, "a")
-    } finally {
-      products.push(this)
-      fs.writeFile(fileName, JSON.stringify(products))
-    }
+    const products = await readData()
+    products.push(this)
+    writeData(products)
   }
 
-
   static async fetchAll () {
-    try {
-      const data = await fs.readFile(fileName)
-      return await JSON.parse(data)
-    } catch (error) {
-      if (error.code === "ENOENT") {
-        return []
-      }
-    }
+    return await readData()
   }
 
   /* // ANOTHER WAY OF HANDLING PRODUCTS USING CALLBACK - CHECK PRODUCTS.JS
