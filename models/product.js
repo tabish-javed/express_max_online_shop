@@ -11,7 +11,6 @@ async function readData () {
     const data = await fs.readFile(fileName)
     return await JSON.parse(data)
   } catch (error) {
-    fs.open(fileName, "a")
     return []
   }
 }
