@@ -1,9 +1,12 @@
 import express from "express"
-import productsController from "../controller/products.js"
+import shopController from "../controller/shop.js"
 
 const router = express.Router()
 
-router.get("/", productsController.getProducts)
+router.get("/", shopController.getIndex)
+router.get("/products", shopController.getProducts)
+router.get("/cart", shopController.getCart)
+router.get("/checkout", shopController.getCheckout)
 
 
 export default { router }
