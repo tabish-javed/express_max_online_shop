@@ -1,6 +1,6 @@
 import express from "express"
 import path from "path"
-import errorController from "./controller/error.js"
+import errorController from "./controllers/error.js"
 import adminRoutes from "./routes/admin.js"
 import shopRoutes from "./routes/shop.js"
 import dirName from "./utilities/dirname.js"
